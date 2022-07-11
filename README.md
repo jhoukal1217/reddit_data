@@ -12,3 +12,6 @@ A serverless data pipeline to extract Reddit data from r/dataengineering.
 output is a simple snowflake dashboard:
 
 ![image](https://user-images.githubusercontent.com/35942230/178358513-a6e8ca45-5ffe-466a-b59f-c48007430de6.png)
+
+## configuration details
+
