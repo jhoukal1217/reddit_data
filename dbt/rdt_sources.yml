@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+  - name: DATAENGINEERING
+    description: '{{ doc("rdt_data_events") }}'
+    database: REDDIT_DATA
+    freshness: # default freshness
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    loaded_at_field: load_time
+
+    tables:
+      - name: DATA_ENGINEERING_STG
+        columns:
+        - name: index
+          description: row index from load job; used for partitioning
+        - name: id
+          description: post id; reddit-based
+        - name: title
+          description: post title
+        - name: score
+          description: post score; reddit-based
+        - name: num_comments
+          description: comment count; reddit-based
+        - name: author
+          description: post author
+        - name: created_utc
+          description: utc post creation time (in epochs)
+        - name: url
+          description: reddit post url
+        - name: ups
+          description: count of upvotes; reddit-based
+        - name: downs
+          description: count of downvotes; reddit-based (always 0?)
+        - name: upvote_ratio
+          description: ratio of upvotes; reddit-based
+        - name: load_time
+          description: time of load-job extraction 
