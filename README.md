@@ -1,6 +1,6 @@
 # reddit_data
 
-A data pipeline to extract Reddit data from r/dataengineering.
+Serverless data pipeline to extract Reddit data from r/dataengineering. 
 
 ## architecture
 
