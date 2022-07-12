@@ -1,0 +1,3 @@
+create or replace pipe REDDIT_DATA.DATAENGINEERING.SNOWPIPE_PIPE auto_ingest=true as copy into reddit_data.dataengineering.data_engineering_stg
+ from @reddit_data.dataengineering.data_engineering_stg
+ file_format = (type = 'CSV', skip_header=1, error_on_column_count_mismatch=false, FIELD_OPTIONALLY_ENCLOSED_BY = '"');
