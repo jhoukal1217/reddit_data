@@ -1,15 +1,18 @@
 # reddit_data
 
-A serverless data pipeline to extract Reddit data from r/dataengineering. 
+an ETL pipeline designed to extract data from the r/dataengineering subreddit.
 
 ## architecture
 
-lambda -> s3 (stage) -> snowpipe -> snowflake -> dbt -> snowflake 
+this serverless pipeline is configured to run once daily. 
 
-1. lambda: data extracted from subreddit and loaded to S3 (external stage) as flat file
-2. snowpipe: s3 create event calls snowpipe, which copies S3 data to staging table
-3. dbt: dbt (re)builds reporting table from staging material each day
-4. snowflake: simple dashboard built on top of reporting table using basic queries 
+eventbridge (cron) -> lambda -> s3 (stage) -> snowpipe -> snowflake -> dbt -> snowflake 
+
+1. eventbridge: cron kicks off lambda once per day
+2. lambda: data extracted from subreddit and loaded to S3 (external stage) as flat file
+3. snowpipe: s3 create event triggers snowpipe, which copies S3 data to staging table
+4. dbt: dbt (re)constructs reporting table from staging material courtesy of daily dbt cron
+5. snowflake: simple dashboard built on top of reporting table using basic queries 
 
 ## output
 output is a simple snowflake dashboard:
